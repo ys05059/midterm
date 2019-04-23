@@ -1,0 +1,47 @@
+#!/bin/bash
+if [ $# -eq 2 ] 
+ then
+   if [ -d "$1" ] 
+	then 
+        echo "$1 is directory" 
+	exit 0 
+   elif [ -d "$2" ] 
+        then 
+        echo "$2 is directory"
+	exit 0
+   else 
+	VAR1=`cat $1`
+	VAR2=`cat $2`
+  	Result=`expr $VAR1 - $VAR2`
+        echo "$Result"
+   fi
+elif [ $# -eq 3 ]
+  then 
+    VAR2=`cat $2`
+    VAR3=`cat $3`
+    Result=`expr $VAR1 + $VAR2 + $VAR3`
+    if [ -d "$1" ]
+	then 
+	echo "$1 is directory"
+     	exit 0
+    elif [ -d "$2" ]
+	then
+	echo "$2 is directory"
+	exit 0
+    elif [ -d "$3" ]
+	then
+	echo "$3 is directory"
+	exit 0
+    else 
+	echo "$Result"
+    VAR1=`cat $1`
+    VAR2=`cat $2`
+    VAR3=`cat $3`
+    Result=`expr $VAR1 + $VAR2 + $VAR3`
+    fi
+else 
+    echo "The number of parameters does not match"	
+fi 
+#https://github.com/ys05059/fun_project1/blob/master/array_test.sh 
+       
+ 

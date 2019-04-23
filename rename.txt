@@ -1,0 +1,46 @@
+#!/bin/bash
+if [ $# -eq 3 ] 
+	then 
+		count=0
+		cd $1
+		for filename in *.$2; do
+                let count=$count+1;
+		done
+		if [ "$1" == "." ]
+		 then 
+			echo There are $count $2 files in current directory.
+		elif [ "$1" == ".." ]	
+		 then
+			echo There are $count $2 files in parent directory
+		else 
+			echo There are $count $2 files in $1
+		fi
+		read -p "Proceed?(Y/N)" reply 
+		serial=0
+		zero=0
+		dzero=00
+		case $reply in 
+		  Y|Yes) for filename in *.$2; do
+				let serial=$serial+1
+				if [ $serial  -lt 100 ] 
+					then 
+					  if [ $serial -lt 10 ]
+						then 
+						mv $filename $3$dzero$serial.$2
+					  else 
+						mv $filename $3$zero$serial.$2
+					  fi
+				else
+				mv $filename $3$serial.$2
+				fi
+				done
+			echo done;;
+		  N|No) exit 0;
+		esac
+else 
+	echo ERROR! You need to provide three parameters.
+	exit 0
+fi
+
+
+			
